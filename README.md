@@ -74,7 +74,7 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(images)
-            loss = criterion(outputs, labels.unsqueeze(1).float())
+            loss = criterion(outputs, labels.float().unsqueeze(1))
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
@@ -87,7 +87,7 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
             for images, labels in test_loader:
                 images, labels = images.to(device), labels.to(device)
                 outputs = model(images)
-                loss = criterion(outputs, labels.unsqueeze(1).float())
+                loss = criterion(outputs, labels.float().unsqueeze(1))
                 val_loss += loss.item()
 
         val_losses.append(val_loss / len(test_loader))
@@ -96,8 +96,8 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
         print(f'Epoch [{epoch+1}/{num_epochs}], Train Loss: {train_losses[-1]:.4f}, Validation Loss: {val_losses[-1]:.4f}')
 
     # Plot training and validation loss
-    print("Name:        ")
-    print("Register Number:        ")
+    print("Name: Ashqar Ahamed")
+    print("Register Number: 212224240018")
     plt.figure(figsize=(8, 6))
     plt.plot(range(1, num_epochs + 1), train_losses, label='Train Loss', marker='o')
     plt.plot(range(1, num_epochs + 1), val_losses, label='Validation Loss', marker='s')
@@ -115,25 +115,25 @@ def train_model(model, train_loader,test_loader,num_epochs=10):
 ### Training Loss, Validation Loss Vs Iteration Plot
 </br>
 
-![alt text](output1-1.png)
+![alt text](image.png)
 
 
 ### Confusion Matrix
 
 </br>
 
-![alt text](output2.png)
+![alt text](image-1.png)
 
 ### Classification Report
 
 </br>
 
-![alt text](output3.png)
+![alt text](classifi.png)
 
 ### New Sample Prediction
 </br>
 
-![alt text](output4.png)
+![alt text](pred.png)
 
 ## RESULT
 Thus, a transfer learner program is implemented for classification using VGG-19 architecture.
